@@ -1,2 +1,2 @@
 # TerraFormDemoVM
-Terraform Linux VM Demo 
+A sample Terraform script to deploy a single Linux VM environment for Demo purposes
