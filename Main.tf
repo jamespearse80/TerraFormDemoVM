@@ -7,6 +7,8 @@ resource "azurerm_resource_group" "myterraformgroup" {
 
     tags = {
         environment = "Terraform Demo"
+        version = "1"
+        creation = "${timestamp()}"
     }
 }
 
