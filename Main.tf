@@ -49,8 +49,8 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 }
 
 # Create Network Security Group and rule
-resource "azurerm_network_security_group" "vmnsg" {
-    name                = "myNetworkSecurityGroup"
+resource "azurerm_network_security_group" "myterraformnsg" {
+    name                = "vmNSG"
     location            = "westeurope"
     resource_group_name = "${azurerm_resource_group.myterraformgroup.name}"
     
@@ -144,7 +144,7 @@ resource "azurerm_virtual_machine" "myterraformvm" {
     os_profile {
         computer_name  = "TerraFormLinuxVM"
         admin_username = "azureuser"
-        admin_password = "Nursling!8jp"
+        admin_password = "Password123!"
     }
 
     os_profile_linux_config {
