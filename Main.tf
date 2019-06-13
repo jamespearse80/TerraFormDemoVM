@@ -21,6 +21,8 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
 
     tags = {
         environment = "Terraform Demo"
+        version = "1"
+        creation = "${timestamp()}"
     }
 }
 
@@ -41,6 +43,8 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 
     tags = {
         environment = "Terraform Demo"
+        version = "1"
+        creation = "${timestamp()}"
     }
 }
 
@@ -64,6 +68,8 @@ resource "azurerm_network_security_group" "vmnsg" {
 
     tags = {
         environment = "Terraform Demo"
+        version = "1"
+        creation = "${timestamp()}"
     }
 }
 
@@ -83,6 +89,8 @@ resource "azurerm_network_interface" "myterraformnic" {
 
     tags = {
         environment = "Terraform Demo"
+        version = "1"
+        creation = "${timestamp()}"
     }
 }
 
@@ -106,6 +114,8 @@ resource "azurerm_storage_account" "mystorageaccount" {
 
     tags = {
         environment = "Terraform Demo"
+        version = "1"
+        creation = "${timestamp()}"
     }
 }
 
@@ -148,5 +158,7 @@ resource "azurerm_virtual_machine" "myterraformvm" {
 
     tags = {
         environment = "Terraform Demo"
+        version = "1"
+        creation = "${timestamp()}"
     }
 }
