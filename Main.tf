@@ -1,3 +1,5 @@
+# This Template creates a Linux VM and the associated Azure network infrastructure - JPearse (Microsoft)
+#
 # Create a resource group if it doesn’t exist
 resource "azurerm_resource_group" "myterraformgroup" {
     name     = "TerraformDemoJP"
