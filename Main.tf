@@ -1,6 +1,6 @@
 # Create a resource group if it doesn’t exist
 resource "azurerm_resource_group" "myterraformgroup" {
-    name     = "myResourceGroup"
+    name     = "TerraformDemoJP"
     location = "eastus"
 
     tags = {
@@ -22,7 +22,7 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
 
 # Create subnet
 resource "azurerm_subnet" "myterraformsubnet" {
-    name                 = "mySubnet"
+    name                 = "VMSubnet"
     resource_group_name  = "${azurerm_resource_group.myterraformgroup.name}"
     virtual_network_name = "${azurerm_virtual_network.myterraformnetwork.name}"
     address_prefix       = "10.2.1.0/24"
@@ -30,7 +30,7 @@ resource "azurerm_subnet" "myterraformsubnet" {
 
 # Create public IPs
 resource "azurerm_public_ip" "myterraformpublicip" {
-    name                         = "myPublicIP"
+    name                         = "LinuxPublicIP"
     location                     = "eastus"
     resource_group_name          = "${azurerm_resource_group.myterraformgroup.name}"
     allocation_method            = "Dynamic"
@@ -41,7 +41,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 }
 
 # Create Network Security Group and rule
-resource "azurerm_network_security_group" "myterraformnsg" {
+resource "azurerm_network_security_group" "vmnsg" {
     name                = "myNetworkSecurityGroup"
     location            = "eastus"
     resource_group_name = "${azurerm_resource_group.myterraformgroup.name}"
@@ -65,7 +65,7 @@ resource "azurerm_network_security_group" "myterraformnsg" {
 
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
-    name                      = "myNIC"
+    name                      = "LinuxNIC"
     location                  = "eastus"
     resource_group_name       = "${azurerm_resource_group.myterraformgroup.name}"
     network_security_group_id = "${azurerm_network_security_group.myterraformnsg.id}"
@@ -107,7 +107,7 @@ resource "azurerm_storage_account" "mystorageaccount" {
 
 # Create virtual machine
 resource "azurerm_virtual_machine" "myterraformvm" {
-    name                  = "TerraFormLinuxVM"
+    name                  = "Prod-LinuxVM"
     location              = "eastus"
     resource_group_name   = "${azurerm_resource_group.myterraformgroup.name}"
     network_interface_ids = ["${azurerm_network_interface.myterraformnic.id}"]
