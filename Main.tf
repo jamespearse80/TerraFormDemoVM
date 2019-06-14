@@ -6,29 +6,30 @@ resource "azurerm_resource_group" "myterraformgroup" {
     location = "westeurope"
 
     tags = {
-        environment = "Terraform Demo"
-        version = "1"
+        environment = "Demo"
+        Lab = "Terraform"
+        creator = "${admin_username()}"
         creation = "${timestamp()}"
     }
 }
 
 # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {
-    name                = "vNet-Core"
-    address_space       = ["10.2.0.0/16"]
+    name                = "vNet-Core-Demo"
+    address_space       = "10.2.0.0/16"
     location            = "westeurope"
     resource_group_name = "${azurerm_resource_group.myterraformgroup.name}"
 
     tags = {
-        environment = "Terraform Demo"
-        version = "1"
+        environment = "Demo"
+        lab = "Terraform"
         creation = "${timestamp()}"
     }
 }
 
 # Create subnet
 resource "azurerm_subnet" "myterraformsubnet" {
-    name                 = "VMSubnet"
+    name                 = "VMSubnet-Demo"
     resource_group_name  = "${azurerm_resource_group.myterraformgroup.name}"
     virtual_network_name = "${azurerm_virtual_network.myterraformnetwork.name}"
     address_prefix       = "10.2.2.0/24"
@@ -42,8 +43,8 @@ resource "azurerm_public_ip" "myterraformpublicip" {
     allocation_method            = "Dynamic"
 
     tags = {
-        environment = "Terraform Demo"
-        version = "1"
+        environment = "Demo"
+        lab = "Terraform"
         creation = "${timestamp()}"
     }
 }
@@ -67,8 +68,8 @@ resource "azurerm_network_security_group" "myterraformnsg" {
     }
 
     tags = {
-        environment = "Terraform Demo"
-        version = "1"
+        environment = "Demo"
+        lab = "Terraform"
         creation = "${timestamp()}"
     }
 }
@@ -88,8 +89,8 @@ resource "azurerm_network_interface" "myterraformnic" {
     }
 
     tags = {
-        environment = "Terraform Demo"
-        version = "1"
+        environment = "Demo"
+        lab = "Terraform"
         creation = "${timestamp()}"
     }
 }
@@ -100,7 +101,7 @@ resource "random_id" "randomId" {
         # Generate a new ID only when a new resource group is defined
         resource_group = "${azurerm_resource_group.myterraformgroup.name}"
     }
-    
+
     byte_length = 8
 }
 
@@ -113,8 +114,8 @@ resource "azurerm_storage_account" "mystorageaccount" {
     account_replication_type    = "LRS"
 
     tags = {
-        environment = "Terraform Demo"
-        version = "1"
+        environment = "Demo"
+        lab = "Terraform"
         creation = "${timestamp()}"
     }
 }
@@ -157,8 +158,8 @@ resource "azurerm_virtual_machine" "myterraformvm" {
     }
 
     tags = {
-        environment = "Terraform Demo"
-        version = "1"
+        environment = "Demo"
+        lab = "Terraform"
         creation = "${timestamp()}"
     }
 }
