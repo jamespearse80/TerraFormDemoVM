@@ -8,7 +8,6 @@ resource "azurerm_resource_group" "myterraformgroup" {
     tags = {
         environment = "Demo"
         Lab = "Terraform"
-        creator = "${admin_username()}"
         creation = "${timestamp()}"
     }
 }
