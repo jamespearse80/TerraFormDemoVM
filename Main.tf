@@ -117,7 +117,7 @@ resource "azurerm_network_interface" "LinuxNIC" {
         name                          = "myNicConfiguration"
         subnet_id                     = "${azurerm_subnet.Frontend.id}"
         private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = "${azurerm_public_ip.myterraformpublicip.id}"
+        public_ip_address_id          = "${azurerm_public_ip.LinuxPublicIP.id}"
     }
 
     tags = {
@@ -182,7 +182,6 @@ resource "azurerm_virtual_machine" "win10client" {
     resource_group_name            = "${azurerm_resource_group.TerraformDemo.name}"
     network_interface_ids          = ["${azurerm_network_interface.Win10NIC.id}"]
     vm_size                        = "Standard_DS1_v2"
-    delete_os_disk_on_termination  = "True"
  
     storage_os_disk {
    	    name              = "Win10Disk"
@@ -190,6 +189,7 @@ resource "azurerm_virtual_machine" "win10client" {
    	    create_option     = "FromImage"
     	managed_disk_type = "Premium_LRS"
     	os_type           = "Windows"
+        delete_os_disk_on_termination  = "True"
     }
  
    storage_image_reference {
